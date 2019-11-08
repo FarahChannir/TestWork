@@ -8,23 +8,25 @@ using System.Threading.Tasks;
 
 namespace PabedaSchool.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContextData : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public ApplicationDbContextData(DbContextOptions<ApplicationDbContextData> options)
             : base(options)
         {
         }
+       
         protected override void OnModelCreating(ModelBuilder builder)
         {
 
             base.OnModelCreating(builder);
 
         }
+
         public DbSet<School> SchoolSet { get; set; }
         public DbSet<Teacher> TeacherSet { get; set; }
         public DbSet<Student> StudentSet { get; set; }
 
         public DbSet<TeacherSchool> TeacherSchoolSet { get; set; }
         public DbSet<ClassSchool> ClassSchoolSet { get; set; }
-        }
     }
+}

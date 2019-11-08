@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Business;
+using Business.Interfaces;
+using Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -33,13 +36,31 @@ namespace PabedaSchool
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            //services.AddSingleton(DALSchool);
+            services.AddScoped<ISchoolLogic, SchoolLogic>();
+            services.AddScoped<IStudentLogic, StudentLogic>();
+            services.AddScoped<ITeacherLogic, TeacherLogic>();
+
+
             services.AddDbContext<ApplicationDbContext>(options =>
-      options.UseSqlServer(
-           Configuration.GetConnectionString("DefaultConnection")));
+           options.UseSqlServer(
+            Configuration.GetConnectionString("DefaultConnection")));
             services.AddIdentity<IdentityUser, IdentityRole>()
                  .AddEntityFrameworkStores<ApplicationDbContext>()
                  .AddDefaultTokenProviders()
                  .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddDbContext<ApplicationDbContextData>(options =>
+            {
+                options.UseSqlServer(
+              Configuration.GetConnectionString("DefaultConnection"),
+                    sqlServerOptions =>
+                    {
+                        sqlServerOptions.MigrationsAssembly("Data");
+                    });
+            });
+
+
             services.AddMvc().AddRazorPagesOptions(options =>
             {
                 options.Conventions.AuthorizeAreaPage("Identity", "/Manage/Accounts");
@@ -48,6 +69,10 @@ namespace PabedaSchool
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddMvc().AddJsonOptions(options =>
                                             options.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.All);
+
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

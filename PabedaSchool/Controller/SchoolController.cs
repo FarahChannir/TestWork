@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Business.Interfaces;
 using Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PabedaSchool.Data;
-using PabedaSchool.Functions;
+
 
 namespace PabedaSchool.Controller
 {
@@ -14,44 +15,46 @@ namespace PabedaSchool.Controller
     [ApiController]
     public class SchoolController : ControllerBase
     {
-        private readonly ApplicationDbContext db;
 
+        private ISchoolLogic _schoolLogic;
 
-        public SchoolController(ApplicationDbContext context)
+        public SchoolController(ISchoolLogic schoolLogic)
         {
-            db = context;
 
+            _schoolLogic = schoolLogic;
         }
-
-        public IActionResult PostAddSchool(DataAPI dataAPI) // The Information of School can Send as Object using Serialize json or as strings Data
+        [HttpPost("AddSchool")]
+        public IActionResult AddSchool() // The Information of School can Send as Object using Serialize json or as strings Data
         {
+            DataAPI dataAPI = new DataAPI();
 
-            var Result = SchoolDataAccess.AddSchool(db, dataAPI.Name, dataAPI.Address, dataAPI.City, dataAPI.District); 
+            var Result = _schoolLogic.AddSchool(dataAPI.Name, dataAPI.Address, dataAPI.City, dataAPI.District);
 
             return Ok(Result);// The Receive will Check the Result
 
-            
-        }
 
-        public IActionResult PostUpdateSchool(DataAPI dataAPI) // The Information of School can Send as Object using Serialize json or as strings Data
+        }
+        [HttpPost("UpdateSchool")]
+        public IActionResult UpdateSchool(DataAPI dataAPI) // The Information of School can Send as Object using Serialize json or as strings Data
         {
 
-            var Result = SchoolDataAccess.UpdateSchool(db, dataAPI.IdSchool, dataAPI.Address, dataAPI.City, dataAPI.District);
+            var Result = _schoolLogic.UpdateSchool(dataAPI.IdSchool, dataAPI.Address, dataAPI.City, dataAPI.District);
 
             return Ok(Result);// The Receive will Check the Result
         }
-
-        public IActionResult PostDeleteSchool(DataAPI dataAPI) // The Information of School can Send as Object using Serialize json or as strings Data
+        [HttpPost("DeleteSchool")]
+        public IActionResult DeleteSchool(DataAPI dataAPI) // The Information of School can Send as Object using Serialize json or as strings Data
         {
 
-            var Result = SchoolDataAccess.DeleteSchool(db, dataAPI.IdSchool);
+            var Result = _schoolLogic.DeleteSchool(dataAPI.IdSchool);
 
             return Ok(Result);// The Receive will Check the Result
         }
+        [HttpPost("GetListSchool")]
 
-        public IActionResult PostGetListSchool()
+        public IActionResult GetListSchool()
         {
-            return Ok(SchoolDataAccess.GetListSchools(db));
+            return Ok(_schoolLogic.GetListSchools());
         }
     }
 }

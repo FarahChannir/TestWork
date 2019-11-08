@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.29424.173
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data.csproj", "{6988DBD9-4780-4E47-BFB1-A15377CED7C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PabedaSchool", "..\PabedaSchool\PabedaSchool.csproj", "{0E107754-7A32-4BD0-8F8E-AAB33FDEF88F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PabedaSchool", "..\PabedaSchool\PabedaSchool.csproj", "{0E107754-7A32-4BD0-8F8E-AAB33FDEF88F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "..\Business\Business.csproj", "{17AEF596-D730-4518-BB0E-9218CFB3915C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{0E107754-7A32-4BD0-8F8E-AAB33FDEF88F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E107754-7A32-4BD0-8F8E-AAB33FDEF88F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E107754-7A32-4BD0-8F8E-AAB33FDEF88F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17AEF596-D730-4518-BB0E-9218CFB3915C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17AEF596-D730-4518-BB0E-9218CFB3915C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17AEF596-D730-4518-BB0E-9218CFB3915C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17AEF596-D730-4518-BB0E-9218CFB3915C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

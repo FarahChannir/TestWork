@@ -13,6 +13,18 @@ namespace Data
         public string PassportNomber { get; set; }
         public School School { get; set; }
 
+        public static Student CreatStudent(string Name, string Surname, string PassportNomber, School School)
+        {
+            var NewStudent = new Student()
+            {
+                Name = Name,
+                PassportNomber = PassportNomber,
+                School = School,
+                Surname = Surname
+            };
+            return NewStudent;
 
+        }
+       
     }
 }
