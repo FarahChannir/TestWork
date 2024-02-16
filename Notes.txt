@@ -1,0 +1,11 @@
+1- I've  not completed the broadcast functionality for clients' actions during auctions.
+
+2- The option to end an auction and view the results is currently unavailable.
+
+3- I've created a simulator for testing purposes.
+
+4- I've configured multiple instances by running clients through the exe file in the client project's bin folder.
+
+5- I've conducted additional tests for various P2P types, and details are included in the rar file.
+
+Grateful for the opportunity to conduct these tests. Thank you!
